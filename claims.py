@@ -1,6 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import auth
+
 READONLY_ACCESS = 1
 CONDUCTOR_ACCESS = 2
 ADMIN_ACCESS = 2
@@ -11,7 +12,7 @@ ACCESS_LISTING = [READONLY_ACCESS, CONDUCTOR_ACCESS, ADMIN_ACCESS]
 credential = credentials.Certificate("fb-key.json")
 firebase_admin.initialize_app(credential)
 print(
-    "Welcome to MM user management. To begin, enter the email you wish to administer."
+    "Welcome to MM user claims management. To begin, enter the email you wish to administer."
 )
 email = input()
 print(f"Searching for {email}")

@@ -10,6 +10,17 @@ library_setup: environment_setup
 	python -m pip install --upgrade pip
 	pip install -r requirements.txt
 
-run:
+# Update user access lvl
+manage_claims:
 	@echo "Running MM user claims entry program"
 	$(VENV_PATH)/bin/python claims.py
+
+# Update user password
+manage_pass:
+	@echo "Running MM user password program"
+	$(VENV_PATH)/bin/python password.py
+
+# Create new user
+create_user:
+	@echo "Running MM user creation program"
+	$(VENV_PATH)/bin/python create.py
