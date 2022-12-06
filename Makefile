@@ -24,3 +24,8 @@ manage_pass:
 create_user:
 	@echo "Running MM user creation program"
 	$(VENV_PATH)/bin/python create.py
+
+# delete user
+delete_user:
+	@echo "Running MM user deletion program"
+	$(VENV_PATH)/bin/python delete.py
