@@ -2,10 +2,15 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import auth
 import maskpass
+import os
 
 # path to firebase service key json
-credential = credentials.Certificate("fb-key.json")
-firebase_admin.initialize_app(credential)
+certfile = "fb-key.json"
+if os.path.isfile(certfile):
+    credential = credentials.Certificate(certfile)
+    firebase_admin.initialize_app(credential)
+else:
+    firebase_admin.initialize_app()
 print(
     "Welcome to MM user password management. To begin, enter the email you wish to administer."
 )

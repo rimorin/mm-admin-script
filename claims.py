@@ -1,16 +1,22 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import auth
+import os
 
 READONLY_ACCESS = 1
 CONDUCTOR_ACCESS = 2
 ADMIN_ACCESS = 3
 ACCESS_LISTING = [READONLY_ACCESS, CONDUCTOR_ACCESS, ADMIN_ACCESS]
+LANGUAGE_LISTING = ["e", "c", "b", "t", "tg", "id", "m"]
 
 
 # path to firebase service key json
-credential = credentials.Certificate("fb-key.json")
-firebase_admin.initialize_app(credential)
+certfile = "fb-key.json"
+if os.path.isfile(certfile):
+    credential = credentials.Certificate(certfile)
+    firebase_admin.initialize_app(credential)
+else:
+    firebase_admin.initialize_app()
 print(
     "Welcome to MM user claims management. To begin, enter the email you wish to administer."
 )
@@ -41,6 +47,24 @@ while True:
         except ValueError:
             print(f"The access level {access_value} is invalid.")
     claims[code] = access_level
+    home_language = "unknown"
+    while home_language not in LANGUAGE_LISTING:
+        print("Enter home language")
+        home_language = input()
+        if home_language not in LANGUAGE_LISTING:
+            print(f"The language {home_language} is invalid.")
+    claims["homeLanguage"] = home_language
+    max_tries = 0
+    while max_tries < 1 or max_tries > 4:
+        print("Enter maximum tries")
+        max_tries_value = input()
+        try:
+            max_tries = int(max_tries_value)
+            if max_tries < 1 or max_tries > 4:
+                print(f"The maximum tries {max_tries} is invalid.")
+        except ValueError:
+            print(f"The maximum tries {max_tries} is invalid.")
+    claims["maxTries"] = max_tries
     print("Do you wish to add more claims? y/n")
     answer = input()
     if answer == "n":
