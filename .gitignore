@@ -1,3 +1,5 @@
 fb-admin
 fb-key.json
 .python-version
+.env
+__pycache__

@@ -1,16 +1,13 @@
 import firebase_admin
-from firebase_admin import credentials
 from firebase_admin import auth
+from utility.helper import initFB
 
 READONLY_ACCESS = 1
 CONDUCTOR_ACCESS = 2
 ADMIN_ACCESS = 3
 ACCESS_LISTING = [READONLY_ACCESS, CONDUCTOR_ACCESS, ADMIN_ACCESS]
 
-
-# path to firebase service key json
-credential = credentials.Certificate("fb-key.json")
-firebase_admin.initialize_app(credential)
+initFB()
 print(
     "Welcome to MM user claims management. To begin, enter the email you wish to administer."
 )
