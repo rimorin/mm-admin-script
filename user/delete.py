@@ -1,10 +1,8 @@
 import firebase_admin
-from firebase_admin import credentials
 from firebase_admin import auth
+from utility.helper import initFB
 
-# path to firebase service key json
-credential = credentials.Certificate("fb-key.json")
-firebase_admin.initialize_app(credential)
+initFB()
 print("Welcome to MM user deletion. To begin, enter the email you wish to delete.")
 email = input()
 print(f"Searching for {email}")

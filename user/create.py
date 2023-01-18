@@ -1,11 +1,9 @@
 import firebase_admin
-from firebase_admin import credentials
 from firebase_admin import auth
 import maskpass
+from utility.helper import initFB
 
-# path to firebase service key json
-credential = credentials.Certificate("fb-key.json")
-firebase_admin.initialize_app(credential)
+initFB()
 print("Welcome to MM user creation. Please enter the necessary details.")
 print("User email: ")
 email = input()
