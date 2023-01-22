@@ -11,6 +11,10 @@ library_setup: environment_setup
 	python -m pip install --upgrade pip
 	pip install -r requirements.txt
 
+format_code:
+	@echo "Formatting python files"
+	black .
+
 # Update user access lvl
 manage_claims:
 	@echo "Running MM user claims entry program"
