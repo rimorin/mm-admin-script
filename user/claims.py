@@ -25,6 +25,8 @@ while user == None:
         email = input()
 claims = user.custom_claims
 print(f"Found email login for {email}. Claims - {claims}")
+if claims is None:
+    claims = dict()
 print(
     f"Please congregation code and access level (0 - Delete claim, 1 - Read Only, 2 - Conductor, 3 - Administrator)"
 )
@@ -47,6 +49,33 @@ while True:
         claims.pop(code)
     else:
         claims[code] = access_level
+    home_language = "None"
+    while home_language != "":
+        print("Enter home language (or blank)")
+        home_language = input()
+        if home_language == "":
+            print("home language not configured")
+            break;
+        else:
+            claims["homeLanguage"] = home_language
+            break
+    max_tries = 0
+    while max_tries < 1 or max_tries > 4:
+        print("Enter maximum tries (or blank)")
+        max_tries_value = input()
+        if max_tries_value != "":
+            try:
+                max_tries = int(max_tries_value)
+                if max_tries < 1 or max_tries > 4:
+                    print(f"The maximum tries {max_tries} is invalid.")
+                else:
+                    claims["maxTries"] = max_tries
+                    break
+            except ValueError:
+                print(f"The maximum tries {max_tries} is invalid.")
+        else:
+            print("max tries not configured")
+            break
     print("Do you wish to modify more claims? y/n")
     answer = input()
     if answer == "n":
