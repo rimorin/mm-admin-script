@@ -20,6 +20,11 @@ manage_claims:
 	@echo "Running MM user claims entry program"
 	$(VENV_PATH)/bin/python user/claims.py
 
+# Update user details
+manage_details:
+	@echo "Running MM user details program"
+	$(VENV_PATH)/bin/python user/details.py
+
 # Update user password
 manage_pass:
 	@echo "Running MM user password program"
